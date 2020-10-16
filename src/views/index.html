@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>To-Do Lister</title>
+        <!-- BOOSTRAP 4 CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
+        crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <a href="/" class="navbar-brand">TODO Lister</a>
+    </nav>
+
+<div class="container">
+        <div class="row">
+            <!--FORM-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="title" placeholder="Title of item" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="description" cols="80" class="form-control" placeholder="Description" required></textarea>
+                            </div>
+                            <span style="margin-bottom: 0px;"><strong>Due Date: </strong></span>
+                            <input type="date" name="dueDate"
+                            style="margin-bottom: 10px; margin-top: 0px;" class="form-control">
+
+                            <button type="submit" class="btn btn-primary btn-block"> Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--LIST-->
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td>0</td>
+                                <td class="title">Offline Mode</td>
+                                <td>Offline Mode</td>
+                                <td>Offline Mode</td>
+                                <td>
+                                    <a href="/changeStatus/<%= items[i]._id%>" 
+                                    class="btn btn-dark"> 
+                                    Done
+                                </a>
+                                    <a href="/delete/<%= items[i]._id%>" class="btn btn-danger"> Delete </a>
+                                    <a href="/edit/<%= items[i]._id%> " class="btn btn-info"> Edit </a>
+                                </td>
+                            </tr>
+
+
+                           
+                    </tbody>
+                </table>
+
+               
+
+        </div>
+</div>
+<script>
+    if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+    //console.log(document.getElementsByClassName("title")[2].innerHTML)--------
+</script>
+
+</body>
+</html>

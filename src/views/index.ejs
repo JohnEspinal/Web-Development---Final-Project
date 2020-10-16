@@ -9,10 +9,10 @@
                     <div class="card-body">
                         <form action="/add" method="POST">
                             <div class="form-group">
-                                <input type="text" name="title" placeholder="Title of item" class="form-control">
+                                <input type="text" name="title" placeholder="Title of item" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <textarea name="description" cols="80" class="form-control" placeholder="Description"></textarea>
+                                <textarea name="description" cols="80" class="form-control" placeholder="Description" required></textarea>
                             </div>
                             <span style="margin-bottom: 0px;"><strong>Due Date: </strong></span>
                             <input type="date" name="dueDate"
@@ -40,7 +40,7 @@
                         <% for(var i = 0; i< items.length; i++) {%>
                             <tr>
                                 <td><%= i + 1%></td>
-                                <td><%= items[i].title%></td>
+                                <td class="title"><%= items[i].title%></td>
                                 <td><%= items[i].description%></td>
                                 <td><%= items[i].dueDate%></td>
                                 <td>
@@ -62,4 +62,21 @@
 
         </div>
 </div>
+<script>
+    if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+    //console.log(document.getElementsByClassName("title")[2].innerHTML)
+</script>
 <%- include('partials/_footer') -%>

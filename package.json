@@ -9,10 +9,16 @@
   },
   "author": "John Espinal",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "fastify": "^3.6.0",
+    "fastify-cors": "^4.1.0",
+    "fastify-express": "^0.2.0",
     "mongoose": "^5.10.7",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-localstorage": "^2.1.6",
+    "node-service-worker": "^2.1.2"
   },
   "license": "MIT",
   "devDependencies": {

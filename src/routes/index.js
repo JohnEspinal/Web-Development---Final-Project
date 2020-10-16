@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const path = require('path');
 const Item = require('../models/item');
 
 router.get('/', async (req, res) =>{
     const items = await Item.find();
-    //console.log(tasks);
+    //res.sendFile(path.join(__dirname, '..', 'views/index.html'));
+
     res.render('index', {
         items
     })
@@ -12,7 +14,11 @@ router.get('/', async (req, res) =>{
 
 router.post('/add', async (req, res) =>{
     const item = new Item(req.body)
-    await item.save();
+    window.localStorage.setItem("item", req.body)
+    await item.save(()=>{
+        
+
+    });
     
     res.redirect('/');
 })
